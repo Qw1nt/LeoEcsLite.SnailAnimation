@@ -3,20 +3,27 @@ using Leopotam.EcsLite;
 
 namespace AnimationSystem.Systems
 {
-    internal class EcsAnimatorInitializeSystem : IEcsRunSystem
+    internal class EcsAnimatorInitializeSystem : IEcsPreInitSystem, IEcsRunSystem
     {
-        public void Run(IEcsSystems systems)
+        private EcsFilter _filter;
+        private EcsPool<InitEcsAnimatorComponent> _initEventsPool;
+        private EcsPool<EcsAnimatorComponent> _animatorPool;
+
+        public void PreInit(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<InitEcsAnimatorComponent>().Inc<EcsAnimatorComponent>().End();
             
-            var initEventsPool = world.GetPool<InitEcsAnimatorComponent>();
-            var animatorsPool = world.GetPool<EcsAnimatorComponent>();
-            
-            foreach (var entity in filter)
+            _filter = world.Filter<InitEcsAnimatorComponent>().Inc<EcsAnimatorComponent>().End();
+            _initEventsPool = world.GetPool<InitEcsAnimatorComponent>();
+            _animatorPool = world.GetPool<EcsAnimatorComponent>();
+        }
+        
+        public void Run(IEcsSystems systems)
+        {
+            foreach (var entity in _filter)
             {
-                initEventsPool.Del(entity);
-                ref var ecsAnimator = ref animatorsPool.Get(entity);
+                _initEventsPool.Del(entity);
+                ref var ecsAnimator = ref _animatorPool.Get(entity);
                 ecsAnimator.EcsAnimator.Init();
                 EcsAnimatorContainer.Register(entity, ecsAnimator.EcsAnimator);
             }
