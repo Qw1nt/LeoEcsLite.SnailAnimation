@@ -1,4 +1,4 @@
-namespace AnimationSystem.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Core
 {
     public interface IEcsAnimationBuffer
     {

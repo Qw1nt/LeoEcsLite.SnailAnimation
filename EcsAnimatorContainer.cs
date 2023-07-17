@@ -1,16 +1,41 @@
 ﻿using System.Collections.Generic;
-using AnimationSystem.Core;
+using SnailBee.LeoEcsLite.SnailAnimation.Core;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace AnimationSystem
+namespace SnailBee.LeoEcsLite.SnailAnimation
 {
-    public static class EcsAnimatorContainer
+    public class EcsAnimatorContainer
     {
-        private static Dictionary<int, EcsAnimator> Data { get; } = new();
+        private static EcsAnimatorContainer _instance;
 
-        public static void Register(int entity, EcsAnimator animator) => Data.Add(entity, animator);
+        private EcsAnimatorContainer()
+        {
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
 
-        public static EcsAnimator Get(int entity) => Data[entity];
+        private Dictionary<int, EcsAnimator> Data { get; } = new();
+
+        public static EcsAnimatorContainer Instance => _instance ??= new EcsAnimatorContainer();
+
+        public void Register(int entity, EcsAnimator animator)
+        {
+            Data.Add(entity, animator);
+        }
+
+        public void SetAnimation(int entity, string animationName)
+        {
+            Get(entity).SetAnimation(animationName);
+        }
         
-        public static void Dispose() => Data.Clear();
+        public EcsAnimator Get(int entity)
+        {
+            return Data[entity];
+        }
+
+        private void OnSceneChanged(Scene scene, Scene mode)
+        {
+            Data.Clear();
+        }
     }
 }

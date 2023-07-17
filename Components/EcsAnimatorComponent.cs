@@ -1,9 +1,7 @@
 ﻿using System;
-using AnimationSystem.Core;
-using UnityEngine;
-using UnityEngine.Serialization;
+using SnailBee.LeoEcsLite.SnailAnimation.Core;
 
-namespace AnimationSystem.Components
+namespace SnailBee.LeoEcsLite.SnailAnimation.Components
 {
     [Serializable]
     public struct EcsAnimatorComponent

@@ -1,7 +1,7 @@
-﻿using AnimationSystem.Systems;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
+using SnailBee.LeoEcsLite.SnailAnimation.Systems;
 
-namespace AnimationSystem.Extensions
+namespace SnailBee.LeoEcsLite.SnailAnimation.Extensions
 {
     public static class LeoEcsLiteExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace AnimationSystem.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Core
 {
     public class AnimationHashMap : Dictionary<string, HashedEcsAnimation>
     {
@@ -10,7 +10,7 @@ namespace AnimationSystem.Core
             foreach (var animation in animations)
             {
                 var hash = Animator.StringToHash(animation.AnimationClip.name);
-                Add(animation.Name, new HashedEcsAnimation(hash, animation.Priority, animation.TransitionDuration));
+                Add(animation.Name, new HashedEcsAnimation(hash, animation));
             }
         }
     }

@@ -1,7 +1,7 @@
-﻿using AnimationSystem.Components;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
+using SnailBee.LeoEcsLite.SnailAnimation.Components;
 
-namespace AnimationSystem.Systems
+namespace SnailBee.LeoEcsLite.SnailAnimation.Systems
 {
     internal class EcsAnimatorInitializeSystem : IEcsPreInitSystem, IEcsRunSystem
     {
@@ -25,7 +25,7 @@ namespace AnimationSystem.Systems
                 _initEventsPool.Del(entity);
                 ref var ecsAnimator = ref _animatorPool.Get(entity);
                 ecsAnimator.EcsAnimator.Init();
-                EcsAnimatorContainer.Register(entity, ecsAnimator.EcsAnimator);
+                EcsAnimatorContainer.Instance.Register(entity, ecsAnimator.EcsAnimator);
             }
         }
     }

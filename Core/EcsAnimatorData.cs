@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace AnimationSystem.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Core
 {
     public class EcsAnimatorData : ScriptableObject
     {

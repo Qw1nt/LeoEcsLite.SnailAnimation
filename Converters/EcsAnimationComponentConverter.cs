@@ -1,7 +1,7 @@
-﻿using AB_Utility.FromSceneToEntityConverter;
-using AnimationSystem.Components;
+﻿using SnailBee.LeoEcsLite.EntityConverter.src;
+using SnailBee.LeoEcsLite.SnailAnimation.Components;
 
-namespace AnimationSystem.Converters
+namespace SnailBee.LeoEcsLite.SnailAnimation.Converters
 {
     public class EcsAnimationComponentConverter : ComponentConverter<EcsAnimatorComponent>
     {

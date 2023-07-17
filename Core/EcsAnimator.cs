@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AnimationSystem.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Core
 {
     //TODO Maybe need added animation priority
     [Serializable]
@@ -38,7 +38,7 @@ namespace AnimationSystem.Core
 
         public bool NeedPlayAnimation()
         {
-            if (EcsAnimationBuffer.LoopIsEmpty && PlayableAnimation != EcsAnimationBuffer.PlayableAnimation)
+            if (PlayableAnimation != EcsAnimationBuffer.PlayableAnimation)
                 return true;
 
             return EcsAnimationBuffer.PlayableAnimation.Priority > PlayableAnimation.Priority;

@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using AnimationSystem.Core;
+using SnailBee.LeoEcsLite.SnailAnimation.Core;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace AnimationSystem.Editor.UIToolkit.CreationWindow
+namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit.CreationWindow
 {
     public class AnimatorDataCreationWindow : EditorWindow
     {

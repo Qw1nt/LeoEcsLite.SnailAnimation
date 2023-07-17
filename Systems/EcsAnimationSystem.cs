@@ -1,7 +1,8 @@
-﻿using AnimationSystem.Components;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
+using SnailBee.LeoEcsLite.SnailAnimation.Components;
+using UnityEngine;
 
-namespace AnimationSystem.Systems
+namespace SnailBee.LeoEcsLite.SnailAnimation.Systems
 {
     internal class EcsAnimationSystem : IEcsPreInitSystem, IEcsRunSystem
     {
@@ -21,7 +22,7 @@ namespace AnimationSystem.Systems
             {
                 ref var component = ref _pool.Get(entity);
                 var ecsAnimator = component.EcsAnimator;
-
+                
                 if (ecsAnimator.NeedPlayAnimation() == false)
                 {
                     ecsAnimator.AnimationBuffer.Clear();

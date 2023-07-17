@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace AnimationSystem.Editor.UIToolkit
+namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit
 {
     public class AnimatorDataWindow : EditorWindow
     {

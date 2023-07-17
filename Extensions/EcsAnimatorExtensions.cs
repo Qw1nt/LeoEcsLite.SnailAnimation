@@ -1,6 +1,6 @@
-﻿using AnimationSystem.Core;
+﻿using SnailBee.LeoEcsLite.SnailAnimation.Core;
 
-namespace AnimationSystem.Extensions
+namespace SnailBee.LeoEcsLite.SnailAnimation.Extensions
 {
     public static class EcsAnimatorExtensions
     {

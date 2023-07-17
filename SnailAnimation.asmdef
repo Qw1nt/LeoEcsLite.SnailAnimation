@@ -1,9 +1,9 @@
 {
     "name": "SnailAnimation",
-    "rootNamespace": "",
+    "rootNamespace": "SnailBee",
     "references": [
         "GUID:e59bf9fc7d5a44b18a819a92edd46163",
-        "GUID:6edd76a60c59af6479735feb61d29472"
+        "GUID:b9cd98631d674c244bb897a14dcf407e"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
