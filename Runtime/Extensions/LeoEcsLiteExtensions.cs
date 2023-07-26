@@ -1,7 +1,7 @@
 ﻿using Leopotam.EcsLite;
-using SnailBee.LeoEcsLite.SnailAnimation.Systems;
+using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Systems;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Extensions
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Extensions
 {
     public static class LeoEcsLiteExtensions
     {
@@ -18,6 +18,7 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Extensions
             systems.Add(new EcsAnimatorInitializeSystem());
             systems.Add(new SetInitialAnimationSystem());
             systems.Add(new EcsAnimationSystem());
+            systems.Add(new EcsAnimationTimerSystem());
 
             return systems;
         }

@@ -1,4 +1,4 @@
-﻿namespace SnailBee.LeoEcsLite.SnailAnimation.Components
+﻿namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Components
 {
     public struct InitEcsAnimatorComponent
     {

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using SnailBee.LeoEcsLite.SnailAnimation.Core;
-using UnityEngine;
+using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core;
 using UnityEngine.SceneManagement;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime
 {
     public class EcsAnimatorContainer
     {
@@ -23,9 +22,9 @@ namespace SnailBee.LeoEcsLite.SnailAnimation
             Data.Add(entity, animator);
         }
 
-        public void SetAnimation(int entity, string animationName)
+        public EcsAnimator SetAnimation(int entity, string animationName)
         {
-            Get(entity).SetAnimation(animationName);
+            return Get(entity).SetAnimation(animationName);
         }
         
         public EcsAnimator Get(int entity)

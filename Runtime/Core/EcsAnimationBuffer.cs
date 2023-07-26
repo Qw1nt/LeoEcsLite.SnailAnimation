@@ -1,6 +1,6 @@
 using System;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
 {
     public class EcsAnimationBuffer : IEcsAnimationBuffer
     {
@@ -8,10 +8,8 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Core
         
         private HashedEcsAnimation LoopAnimation { get; set; } = HashedEcsAnimation.Null;
 
-        public bool LoopIsEmpty => LoopAnimation == HashedEcsAnimation.Null;
-
-        public HashedEcsAnimation PlayableAnimation => LoopIsEmpty ? InitialAnimation : LoopAnimation;
-
+        public HashedEcsAnimation PlayableAnimation => LoopAnimation == HashedEcsAnimation.Null ? InitialAnimation : LoopAnimation;
+        
         public void SetInitial(HashedEcsAnimation animation)
         {
             if (InitialAnimation != HashedEcsAnimation.Null)
@@ -20,7 +18,7 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Core
             InitialAnimation = animation;
         }
         
-        public void Fill(HashedEcsAnimation animation)
+        internal void Fill(HashedEcsAnimation animation)
         {
             LoopAnimation = animation;
         }

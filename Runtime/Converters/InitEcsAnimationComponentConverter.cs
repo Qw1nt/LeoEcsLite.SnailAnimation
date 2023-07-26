@@ -1,7 +1,7 @@
 ﻿using SnailBee.LeoEcsLite.EntityConverter.src;
-using SnailBee.LeoEcsLite.SnailAnimation.Components;
+using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Components;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Converters
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Converters
 {
     public class InitEcsAnimationComponentConverter : ComponentConverter<InitEcsAnimatorComponent>
     {

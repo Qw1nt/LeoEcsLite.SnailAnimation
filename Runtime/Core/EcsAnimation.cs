@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
 {
     [Serializable]
     public class EcsAnimation

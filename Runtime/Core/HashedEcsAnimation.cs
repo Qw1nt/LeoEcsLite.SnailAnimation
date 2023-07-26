@@ -1,6 +1,6 @@
 using System;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Core
+namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
 {
     //TODO Maybe need added animation priority
     public readonly struct HashedEcsAnimation
@@ -24,13 +24,13 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Core
         }
 
         public string Name { get; }
-        
+
         public int Hash { get; }
 
         public int Priority { get; }
 
         public float TransitionDuration { get; }
-        
+
         public float ClipDuration { get; }
 
         public override bool Equals(object obj)
@@ -39,17 +39,33 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Core
                 return false;
 
             return obj.GetType() == GetType()
-                   && Equals((HashedEcsAnimation)obj);
+                   && Equals((HashedEcsAnimation) obj);
         }
 
         public override int GetHashCode()
         {
             return HashCode.Combine(Hash, TransitionDuration);
         }
-    
-        public static bool operator ==(HashedEcsAnimation left, HashedEcsAnimation right) => left.Hash == right.Hash;
 
-        public static bool operator !=(HashedEcsAnimation left, HashedEcsAnimation right) => left.Hash != right.Hash;
+        public static bool operator ==(HashedEcsAnimation left, HashedEcsAnimation right)
+        {
+            return left.Hash == right.Hash;
+        }
+
+        public static bool operator !=(HashedEcsAnimation left, HashedEcsAnimation right)
+        {
+            return left.Hash != right.Hash;
+        }
+
+        public static bool operator >(HashedEcsAnimation left, HashedEcsAnimation right)
+        {
+            return left.Priority > right.Priority;
+        }
+
+        public static bool operator <(HashedEcsAnimation left, HashedEcsAnimation right)
+        {
+            return left.Priority < right.Priority;
+        }
 
         public static HashedEcsAnimation Null => new(null, 0, 0, 0f, 0f);
     }
