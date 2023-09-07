@@ -1,7 +1,8 @@
 ﻿using Leopotam.EcsLite;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Components;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components;
+using SnailBee.LeoEcsLite.SnailAnimation.Runtime;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Systems
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
 {
     internal class EcsAnimatorInitializeSystem : IEcsPreInitSystem, IEcsRunSystem
     {

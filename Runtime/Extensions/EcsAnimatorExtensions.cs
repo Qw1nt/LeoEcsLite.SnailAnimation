@@ -1,6 +1,6 @@
 ﻿using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Extensions
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Extensions
 {
     public static class EcsAnimatorExtensions
     {

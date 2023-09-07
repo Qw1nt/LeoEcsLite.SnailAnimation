@@ -1,8 +1,8 @@
 ﻿using Leopotam.EcsLite;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Components;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components;
 using UnityEngine;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Systems
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
 {
     public class EcsAnimationTimerSystem : IEcsPreInitSystem, IEcsRunSystem
     {

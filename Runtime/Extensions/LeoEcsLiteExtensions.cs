@@ -1,18 +1,10 @@
 ﻿using Leopotam.EcsLite;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Systems;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Extensions
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Extensions
 {
     public static class LeoEcsLiteExtensions
     {
-        /*public static IEcsSystems AddInitialAnimationSystem(this IEcsSystems systems)
-        {
-            systems.Add(new EcsAnimatorInitializeSystem());
-            systems.Add(new SetInitialAnimationSystem());
-
-            return systems;
-        }*/
-        
         public static IEcsSystems AddAnimationSystem(this IEcsSystems systems)
         {
             systems.Add(new EcsAnimatorInitializeSystem());
