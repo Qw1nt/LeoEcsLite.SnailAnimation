@@ -1,6 +1,6 @@
 using System;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
     public class EcsAnimationBuffer : IEcsAnimationBuffer
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components
 {

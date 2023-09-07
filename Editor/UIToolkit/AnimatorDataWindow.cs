@@ -1,12 +1,13 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit
 {
     public class AnimatorDataWindow : EditorWindow
     {
-        [SerializeField] private VisualTreeAsset tree;
+        [SerializeField] private VisualTreeAsset _tree;
         
         [MenuItem("Window/Ecs Animation System/Animator Data")]
         public static void Open()
@@ -17,7 +18,7 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit
 
         public void CreateGUI()
         {
-            tree.CloneTree(rootVisualElement);
+            _tree.CloneTree(rootVisualElement);
         }
     }
 }

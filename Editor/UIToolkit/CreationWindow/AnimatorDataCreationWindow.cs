@@ -2,21 +2,22 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 using UnityEditor;
 using UnityEditor.Animations;
-using UnityEditor.Search;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit.CreationWindow
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 {
     public class AnimatorDataCreationWindow : EditorWindow
     {
-        [SerializeField] private VisualTreeAsset tree;
-        [SerializeField] private VisualTreeAsset animationPreview;
+        [SerializeField] private VisualTreeAsset _tree;
+        [SerializeField] private VisualTreeAsset _animationPreview;
+        
         private readonly List<EcsAnimation> _animations = new();
+        
         private Elements _elements;
         private CreateAnimationElements _createElements;
 
@@ -29,7 +30,7 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit.CreationWindow
 
         public void CreateGUI()
         {
-            tree.CloneTree(rootVisualElement);
+            _tree.CloneTree(rootVisualElement);
             _elements = new Elements(rootVisualElement);
             _createElements = new CreateAnimationElements(rootVisualElement);
             
@@ -76,7 +77,7 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Editor.UIToolkit.CreationWindow
             if (StringIsEmpty(_createElements.ClipName.value, "Clip name is not select") == true)
                 return;
 
-            VisualElement element = animationPreview.CloneTree();
+            VisualElement element = _animationPreview.CloneTree();
             var ecsAnimation = SetupAddedAnimation(element);
 
             _createElements.AnimationKey.value = "";

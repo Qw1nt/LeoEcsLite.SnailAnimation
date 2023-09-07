@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
-    //TODO Maybe need added animation priority
     [Serializable]
     public class EcsAnimator
     {
-        [SerializeField] private Animator unityAnimator;
-        [SerializeField] private EcsAnimatorData animatorData;
+        [SerializeField] private Animator _unityAnimator;
+        [SerializeField] private EcsAnimatorData _animatorData;
 
         private AnimationHashMap _animationHashMap;
 
-        public EcsAnimatorData Data => animatorData;
+        public EcsAnimatorData Data => _animatorData;
 
         private HashedEcsAnimation PlayableAnimation { get; set; }
 
@@ -25,14 +25,14 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
 
         internal void Init()
         {
-            if (unityAnimator is null)
+            if (_unityAnimator is null)
                 throw new NullReferenceException("Unity animator not installed");
 
-            if (animatorData is null)
+            if (_animatorData is null)
                 throw new NullReferenceException("Ecs animator data not set");
 
-            unityAnimator.runtimeAnimatorController = animatorData.AnimatorController;
-            _animationHashMap = new AnimationHashMap(animatorData.Animations);
+            _unityAnimator.runtimeAnimatorController = _animatorData.AnimatorController;
+            _animationHashMap = new AnimationHashMap(_animatorData.Animations);
         }
 
         public HashedEcsAnimation GetAnimation(string animationName)
@@ -87,12 +87,12 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
         internal void Play()
         {
             var animation = EcsAnimationBuffer.PlayableAnimation;
-            
+
             if (PlayableAnimation == animation)
-                unityAnimator.Play(animation.Hash, -1, 0f);
+                _unityAnimator.Play(animation.Hash, -1, 0f);
             else
-                unityAnimator.CrossFade(animation.Hash, animation.TransitionDuration);
-            
+                _unityAnimator.CrossFade(animation.Hash, animation.TransitionDuration);
+
             PlayableAnimation = animation;
         }
     }

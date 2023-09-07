@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 using UnityEngine.SceneManagement;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime
 {
     public class EcsAnimatorContainer
     {

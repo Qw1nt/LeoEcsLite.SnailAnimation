@@ -1,9 +1,8 @@
 using System;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
-    //TODO Maybe need added animation priority
-    public readonly struct HashedEcsAnimation
+    public class HashedEcsAnimation
     {
         public HashedEcsAnimation(int animationHash, EcsAnimation animation)
         {
@@ -49,12 +48,12 @@ namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
 
         public static bool operator ==(HashedEcsAnimation left, HashedEcsAnimation right)
         {
-            return left.Hash == right.Hash;
+            return left?.Hash == right?.Hash;
         }
 
         public static bool operator !=(HashedEcsAnimation left, HashedEcsAnimation right)
         {
-            return left.Hash != right.Hash;
+            return left?.Hash != right?.Hash;
         }
 
         public static bool operator >(HashedEcsAnimation left, HashedEcsAnimation right)

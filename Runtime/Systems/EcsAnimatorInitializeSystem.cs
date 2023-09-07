@@ -1,6 +1,5 @@
 ﻿using Leopotam.EcsLite;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components;
-using SnailBee.LeoEcsLite.SnailAnimation.Runtime;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
 {

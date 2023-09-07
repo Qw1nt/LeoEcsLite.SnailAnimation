@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace SnailBee.LeoEcsLite.SnailAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
     public class EcsAnimatorData : ScriptableObject
     {
-        [SerializeField] private RuntimeAnimatorController animatorController;
+        [SerializeField] private RuntimeAnimatorController _animatorController;
 
         [Space]
-        [SerializeField] private string initialAnimationName; 
-        [SerializeField] private List<EcsAnimation> animations;
+        [SerializeField] private string _initialAnimationName; 
+        [SerializeField] private List<EcsAnimation> _animations;
 
-        public RuntimeAnimatorController AnimatorController => animatorController;
+        public RuntimeAnimatorController AnimatorController => _animatorController;
 
-        public string InitialAnimationName => initialAnimationName;
+        public string InitialAnimationName => _initialAnimationName;
         
-        public IReadOnlyList<EcsAnimation> Animations => animations;
+        public IReadOnlyList<EcsAnimation> Animations => _animations;
     }
 }
