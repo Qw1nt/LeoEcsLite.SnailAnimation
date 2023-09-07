@@ -5,8 +5,6 @@
 
 > **ВАЖНО!** Зависит от [LeoEcsLite](https://github.com/Leopotam/ecslite)
 
-> **ВАЖНО!** *Временно* Зависит от [LeoEcsLiteEntityConverter](https://github.com/AndreyBirchenko/LeoEcsLiteEntityConverter)
-
 ### В виде Unity модуля
 
 Поддерживается установка в виде unity-модуля через git-ссылку в PackageManager или прямое редактирование `Packages/manifest.json`:

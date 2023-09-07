@@ -1,9 +1,8 @@
 {
-    "name": "SnailAnimation",
-    "rootNamespace": "SnailBee",
+    "name": "EaseAnimation",
+    "rootNamespace": "Qw1nt",
     "references": [
-        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
-        "GUID:b9cd98631d674c244bb897a14dcf407e"
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
