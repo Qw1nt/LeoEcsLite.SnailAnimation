@@ -1,4 +1,4 @@
-# LeoEcsLite - Snail Animation
+# LeoEcsLite - Ease Animation
 Удобное взаимодействие с Unity Animator через ECS
 
 ## Установка
