@@ -7,7 +7,8 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Extensions
     {
         public static IEcsSystems AddAnimationSystem(this IEcsSystems systems)
         {
-            systems.Add(new EcsAnimatorInitializeSystem());
+            systems.Add(new InitEcsAnimatorSystem());
+            systems.Add(new DelInitRequestSystem());
             systems.Add(new SetInitialAnimationSystem());
             systems.Add(new EcsAnimationSystem());
             systems.Add(new EcsAnimationTimerSystem());

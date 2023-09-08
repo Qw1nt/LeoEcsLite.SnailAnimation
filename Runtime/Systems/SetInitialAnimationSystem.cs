@@ -21,7 +21,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
             foreach (var entity in _filter)
             {
                 ref var component = ref _pool.Get(entity);
-                component.EcsAnimator.SetInitialAnimation();
+                component.Source.SetInitialAnimation();
             }
         }
     }

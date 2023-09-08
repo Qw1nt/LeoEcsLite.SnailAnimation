@@ -1,8 +1,8 @@
 {
-    "name": "EaseAnimation",
-    "rootNamespace": "Qw1nt",
+    "name": "Qw1nt.LeoEcsLite.EaseAnimation.Editor",
+    "rootNamespace": "",
     "references": [
-        "GUID:e59bf9fc7d5a44b18a819a92edd46163"
+        "GUID:91d54e10b671b8e4f9c123a1ffa1f6d1"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -4,11 +4,17 @@ using UnityEngine.Serialization;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
-    [Serializable]
     public class EcsAnimator
     {
-        [SerializeField] private Animator _unityAnimator;
-        [SerializeField] private EcsAnimatorData _animatorData;
+        private readonly Animator _unityAnimator;
+        private readonly EcsAnimatorData _animatorData;
+
+        public EcsAnimator(Animator unityAnimator, EcsAnimatorData animatorData)
+        {
+            _unityAnimator = unityAnimator;
+            _animatorData = animatorData;
+            Init();
+        }
 
         private AnimationHashMap _animationHashMap;
 
@@ -23,7 +29,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
         private float _animationTimerDuration;
         private bool _forcePlay;
 
-        internal void Init()
+        private void Init()
         {
             if (_unityAnimator is null)
                 throw new NullReferenceException("Unity animator not installed");

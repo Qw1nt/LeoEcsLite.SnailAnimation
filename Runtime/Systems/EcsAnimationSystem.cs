@@ -20,7 +20,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
             foreach (var entity in _filter)
             {
                 ref var component = ref _pool.Get(entity);
-                var ecsAnimator = component.EcsAnimator;
+                var ecsAnimator = component.Source;
                 
                 if (ecsAnimator.NeedPlayAnimation() == false)
                 {

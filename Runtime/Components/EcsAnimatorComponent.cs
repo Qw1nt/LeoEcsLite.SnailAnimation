@@ -6,6 +6,6 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components
     [Serializable]
     public struct EcsAnimatorComponent
     {
-        public EcsAnimator EcsAnimator;
+        public EcsAnimator Source;
     }
 }

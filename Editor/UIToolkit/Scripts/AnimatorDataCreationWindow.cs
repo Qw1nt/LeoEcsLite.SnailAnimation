@@ -5,7 +5,6 @@ using System.Linq;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 using UnityEditor;
 using UnityEditor.Animations;
-using UnityEditor.Experimental;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
