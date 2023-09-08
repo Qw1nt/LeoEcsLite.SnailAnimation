@@ -5,6 +5,7 @@ using System.Linq;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 using UnityEditor;
 using UnityEditor.Animations;
+using UnityEditor.Experimental;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,11 +14,13 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 {
     public class AnimatorDataCreationWindow : EditorWindow
     {
-        [SerializeField] private VisualTreeAsset _tree;
-        [SerializeField] private VisualTreeAsset _animationPreview;
-        
+        private const string TreeLoadKey = "AnimatorDataCreationWindow";
+        private const string AnimationPreviewKey = "CreationAnimationPreview";
+
         private readonly List<EcsAnimation> _animations = new();
-        
+
+        private VisualTreeAsset _tree;
+        private VisualTreeAsset _animationPreview;
         private Elements _elements;
         private CreateAnimationElements _createElements;
 
@@ -25,18 +28,26 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
         public static void Open()
         {
             var window = GetWindow<AnimatorDataCreationWindow>();
+            
+            window.minSize = new Vector2(100f, 100f);
             window.titleContent = new GUIContent("Create Animator Data");
+            window._tree = Resources.Load<VisualTreeAsset>(TreeLoadKey);
+            window._animationPreview = Resources.Load<VisualTreeAsset>(AnimationPreviewKey);
         }
 
         public void CreateGUI()
         {
+            _tree = Resources.Load<VisualTreeAsset>(TreeLoadKey);
+            _animationPreview = Resources.Load<VisualTreeAsset>(AnimationPreviewKey);
+            Debug.Log(_tree);
+            
             _tree.CloneTree(rootVisualElement);
             _elements = new Elements(rootVisualElement);
             _createElements = new CreateAnimationElements(rootVisualElement);
-            
+
             _createElements.AddAnimationButton.clicked += AddAnimation;
             _elements.CreateAnimationParent.SetEnabled(false);
-            
+
             _elements.SourceAnimator.RegisterValueChangedCallback(InitAnimator);
             _createElements.ClipReferenceField.SetEnabled(false);
             _createElements.ClipName.RegisterValueChangedCallback(callback =>
@@ -44,13 +55,13 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 var animatorController = (AnimatorController) _elements.SourceAnimator.value;
                 var animation = animatorController.animationClips
                     .FirstOrDefault(x => x.name == callback.newValue);
-                
+
                 if (animation is null)
                     return;
 
                 _createElements.ClipReferenceField.value = animation;
             });
-            
+
             _elements.SaveAssetButton.clicked += Create;
         }
 
@@ -68,7 +79,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             _elements.InitialAnimationDropdown.choices = new List<string>();
             _elements.CreateAnimationParent.SetEnabled(true);
         }
-        
+
         private void AddAnimation()
         {
             if (StringIsEmpty(_createElements.AnimationKey.value, "Animation key field is empty") == true)
@@ -97,7 +108,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             float transitionDuration = _createElements.TransitionDuration.value;
             string clipName = _createElements.ClipName.text;
             int priority = _animations.Count + 1;
-            
+
             var animationClipField = element.Q<ObjectField>("AnimationClip");
             animationClipField.value = clip;
             animationClipField.SetEnabled(false);
@@ -108,7 +119,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             {
                 Selection.SetActiveObjectWithContext(animationClipField.value, null);
             };
-            
+
             element.Q<Label>("AnimationKey").text = animationKey;
             element.Q<Label>("TransitionDuration").text = transitionDuration.ToString(CultureInfo.InvariantCulture);
             element.Q<Label>("ClipName").text = clipName;
@@ -126,12 +137,12 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
         private void Create()
         {
             var assetPath = CreateEmptyAsset();
-            if(string.IsNullOrEmpty(assetPath) == true)
+            if (string.IsNullOrEmpty(assetPath) == true)
                 return;
-            
+
             SetupAsset(assetPath);
         }
-        
+
         private string CreateEmptyAsset()
         {
             string sourcePath = _elements.SavePath.value;
@@ -139,7 +150,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 
             if (StringIsEmpty(assetName, "Asset name is empty") == true)
                 return null;
-            
+
             string savePath = Path.Combine("Assets", sourcePath);
             string assetPath = Path.Combine(savePath, assetName);
             assetPath = Path.ChangeExtension(assetPath, "asset");
@@ -158,20 +169,20 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
         {
             var asset = AssetDatabase.LoadAssetAtPath<EcsAnimatorData>(assetPath);
             SerializedObject serializedObject = new SerializedObject(asset);
-            serializedObject.FindProperty("animatorController").objectReferenceValue = _elements.SourceAnimator.value;
-            var animationsListProperty = serializedObject.FindProperty("animations");
-            
+            serializedObject.FindProperty("_animatorController").objectReferenceValue = _elements.SourceAnimator.value;
+            var animationsListProperty = serializedObject.FindProperty("_animations");
+
             animationsListProperty.arraySize = _animations.Count;
 
             for (int i = 0; i < animationsListProperty.arraySize; i++)
             {
                 var arrayElement = animationsListProperty.GetArrayElementAtIndex(i);
                 var ecsAnimation = _animations[i];
-                
-                arrayElement.FindPropertyRelative("name").stringValue = ecsAnimation.Name;
-                arrayElement.FindPropertyRelative("priority").intValue = ecsAnimation.Priority;
-                arrayElement.FindPropertyRelative("transitionDuration").floatValue = ecsAnimation.TransitionDuration;
-                arrayElement.FindPropertyRelative("animationClip").objectReferenceValue = ecsAnimation.AnimationClip;
+
+                arrayElement.FindPropertyRelative("_name").stringValue = ecsAnimation.Name;
+                arrayElement.FindPropertyRelative("_priority").intValue = ecsAnimation.Priority;
+                arrayElement.FindPropertyRelative("_transitionDuration").floatValue = ecsAnimation.TransitionDuration;
+                arrayElement.FindPropertyRelative("_animationClip").objectReferenceValue = ecsAnimation.AnimationClip;
             }
 
             serializedObject.ApplyModifiedProperties();
@@ -191,7 +202,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             EditorUtility.DisplayDialog("ERROR", errorMessage, "Ok");
             return true;
         }
-        
+
         private class CreateAnimationElements
         {
             public CreateAnimationElements(VisualElement root)
@@ -202,23 +213,23 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 ClipReferenceField = root.Q<ObjectField>("ReferenceClipField");
                 AddAnimationButton = root.Q<Button>("AddAnimationButton");
             }
-            
+
             public TextField AnimationKey { get; }
-            
+
             public FloatField TransitionDuration { get; }
-            
+
             public DropdownField ClipName { get; }
-            
+
             public ObjectField ClipReferenceField { get; }
-            
+
             public Button AddAnimationButton { get; }
         }
-        
+
         private class Elements
         {
             public Elements(VisualElement root)
             {
-                SavePath= root.Q<TextField>("SavePathField");
+                SavePath = root.Q<TextField>("SavePathField");
                 AssetName = root.Q<TextField>("AssetNameField");
                 SourceAnimator = root.Q<ObjectField>("SourceAnimatorField");
                 CreateAnimationParent = root.Q<VisualElement>("CreateAnimationFields");
@@ -226,19 +237,19 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 ScrollView = root.Q<ScrollView>("PreviewAnimationList");
                 SaveAssetButton = root.Q<Button>("SaveAssetButton");
             }
-            
+
             public TextField SavePath { get; }
-            
+
             public TextField AssetName { get; }
 
             public ObjectField SourceAnimator { get; }
-            
+
             public VisualElement CreateAnimationParent { get; }
-            
+
             public DropdownField InitialAnimationDropdown { get; }
-            
+
             public ScrollView ScrollView { get; }
-            
+
             public Button SaveAssetButton { get; }
         }
     }
