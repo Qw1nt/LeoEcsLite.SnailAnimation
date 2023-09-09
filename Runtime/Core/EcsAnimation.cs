@@ -8,8 +8,12 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
     {
         [SerializeField] private string _name;
         [SerializeField] private int _priority;
+        
+        [Space]
         [SerializeField] private float _transitionDuration;
         [SerializeField] private AnimationClip _animationClip;
+        
+        [Space]
         [SerializeField] private LayerSettings _layerSettings;
 
         public EcsAnimation()

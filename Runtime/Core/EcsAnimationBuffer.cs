@@ -4,20 +4,20 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
     public class EcsAnimationBuffer : IEcsAnimationBuffer
     {
-        private HashedEcsAnimation InitialAnimation { get; set; } = HashedEcsAnimation.Null;
-        
-        private HashedEcsAnimation LoopAnimation { get; set; } = HashedEcsAnimation.Null;
+        private HashedEcsAnimation InitialAnimation { get; set; } = null;
 
-        public HashedEcsAnimation PlayableAnimation => LoopAnimation == HashedEcsAnimation.Null ? InitialAnimation : LoopAnimation;
-        
+        private HashedEcsAnimation LoopAnimation { get; set; } = null;
+
+        public HashedEcsAnimation PlayableAnimation => LoopAnimation == null ? InitialAnimation : LoopAnimation;
+
         public void SetInitial(HashedEcsAnimation animation)
         {
-            if (InitialAnimation != HashedEcsAnimation.Null)
+            if (InitialAnimation != null)
                 throw new InvalidOperationException();
-            
+
             InitialAnimation = animation;
         }
-        
+
         internal void Fill(HashedEcsAnimation animation)
         {
             LoopAnimation = animation;
@@ -25,8 +25,8 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 
         public void Clear()
         {
-            InitialAnimation = HashedEcsAnimation.Null;
-            LoopAnimation = HashedEcsAnimation.Null;
+            InitialAnimation = null;
+            LoopAnimation = null;
         }
     }
 }

@@ -50,11 +50,11 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
         {
             var filledAnimation = _animationHashMap[animationName];
 
-            if (filledAnimation.Priority > EcsAnimationBuffer.PlayableAnimation.Priority)
+            if (filledAnimation?.Priority > EcsAnimationBuffer.PlayableAnimation?.Priority)
                 EcsAnimationBuffer.Fill(filledAnimation);
 
             if (_animationTimerDuration <= 0f && filledAnimation > EcsAnimationBuffer.PlayableAnimation)
-                EcsAnimationBuffer.Fill(filledAnimation);
+                EcsAnimationBuffer?.Fill(filledAnimation);
 
             return this;
         }
@@ -99,7 +99,18 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
             else
                 _unityAnimator.CrossFade(animation.Hash, animation.TransitionDuration);
 
+            ApplyLayerSettings(animation);
             PlayableAnimation = animation;
+        }
+
+        private void ApplyLayerSettings(HashedEcsAnimation animation)
+        {
+            Debug.Log($"Playeback: {PlayableAnimation?.LayerSettings.Index}, Current: {animation.LayerSettings.Index}");
+            
+            if (PlayableAnimation?.LayerSettings.Index != animation.LayerSettings.Index)
+                PlayableAnimation?.LayerSettings.Reset(_unityAnimator);
+            
+            _unityAnimator.SetLayerWeight(animation.LayerSettings.Index, animation.LayerSettings.Weight);
         }
     }
 }

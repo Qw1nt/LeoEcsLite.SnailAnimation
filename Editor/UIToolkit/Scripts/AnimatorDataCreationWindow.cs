@@ -5,6 +5,7 @@ using System.Linq;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
 using UnityEditor;
 using UnityEditor.Animations;
+using UnityEditor.UI;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -205,7 +206,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 ClipName = root.Q<DropdownField>("AnimationClipsDropdown");
                 ClipReference = root.Q<ObjectField>("ReferenceClipField");
                 LayerIndex = root.Q<IntegerField>("LayerIndex");
-                LayerWeight = root.Q<FloatField>("LayerWeight");
+                LayerWeight = root.Q<Slider>("LayerWeight");
                 AddAnimationButton = root.Q<Button>("AddAnimationButton");
             }
 
@@ -219,7 +220,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 
             public IntegerField LayerIndex { get; }
 
-            public FloatField LayerWeight { get; }
+            public Slider LayerWeight { get; }
 
             public Button AddAnimationButton { get; }
 

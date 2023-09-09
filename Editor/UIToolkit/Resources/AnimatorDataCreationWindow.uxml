@@ -9,29 +9,29 @@
                 <ui:TextField picking-mode="Ignore" label="Asset name:" password="false" name="AssetNameField" style="padding-bottom: 1px; padding-right: 5px; padding-left: 5px;" />
                 <ui:TextField picking-mode="Ignore" label="Save path:" password="false" name="SavePathField" style="padding-bottom: 1px; padding-right: 5px; padding-left: 5px;" />
             </ui:VisualElement>
-            <ui:VisualElement style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                <uie:ObjectField label="Source animator:" type="UnityEditor.Animations.AnimatorController, UnityEditor" binding-path="animatorController" name="SourceAnimatorField" style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; margin-top: 10px;" />
-                <ui:VisualElement name="CreateAnimationFields" style="padding-top: 0; flex-grow: 0; border-top-left-radius: 5px; border-top-right-radius: 5px; background-color: rgba(53, 53, 53, 255);">
+            <ui:VisualElement style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color: rgb(55, 55, 55); margin-top: 5px; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
+                <uie:ObjectField label="Source animator:" type="UnityEditor.Animations.AnimatorController, UnityEditor" binding-path="animatorController" name="SourceAnimatorField" style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; margin-top: 5px; margin-left: 0; margin-right: 0; margin-bottom: 5px;" />
+                <ui:VisualElement name="CreateAnimationFields" style="padding-top: 0; flex-grow: 0; border-top-left-radius: 5px; border-top-right-radius: 5px; background-color: rgb(53, 53, 53);">
                     <ui:VisualElement>
                         <ui:VisualElement name="MainContainer" class="items-container">
                             <ui:Label text="Main" display-tooltip-when-elided="true" style="margin-top: 0; border-bottom-width: 0; border-bottom-color: rgb(52, 52, 52); height: 18px; font-size: 13px; margin-bottom: 0; margin-left: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; margin-right: 0;" />
                             <ui:VisualElement name="MainContainer" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-color: rgb(70, 70, 70); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-width: 0; border-right-width: 0; border-left-width: 0; border-left-color: rgb(52, 52, 52); border-right-color: rgb(52, 52, 52); border-top-color: rgb(52, 52, 52); border-bottom-color: rgb(52, 52, 52); border-top-width: 0;">
-                                <uie:FloatField label="Transition duration:" value="0" name="TransitionDurationField" style="margin-top: 1px;" />
-                                <ui:TextField picking-mode="Ignore" label="Animation key:" value="filler text" name="AnimationKey" style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0;" />
+                                <ui:TextField picking-mode="Ignore" label="Animation key:" value="filler text" name="AnimationKey" style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+                                <uie:FloatField label="Transition duration:" value="0" name="TransitionDurationField" style="margin-top: 5px; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="AnimationClipContainer" class="items-container">
                             <ui:Label text="Animation clip&#10;" display-tooltip-when-elided="true" style="margin-top: 0; height: 18px; font-size: 13px; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
                             <ui:VisualElement name="AnimationClipContainer" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-color: rgb(70, 70, 70); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                                <uie:ObjectField label="Reference:" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" focusable="false" name="ReferenceClipField" allow-scene-objects="false" style="padding-bottom: 0; display: flex; visibility: visible; overflow: hidden;" />
-                                <ui:DropdownField label="Name" index="-1" name="AnimationClipsDropdown" style="margin-top: 5px;" />
+                                <ui:DropdownField label="Name" index="-1" name="AnimationClipsDropdown" style="margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
+                                <uie:ObjectField label="Reference:" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" focusable="false" name="ReferenceClipField" allow-scene-objects="false" style="padding-bottom: 0; display: flex; visibility: visible; overflow: hidden; margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="LayerSettingsContainer" class="items-container">
                             <ui:Label text="Layer&#10;" display-tooltip-when-elided="true" style="height: 18px; font-size: 13px;" />
                             <ui:VisualElement style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color: rgb(70, 70, 70); padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
-                                <uie:FloatField label="Weight" value="42,2" name="LayerWeight" />
-                                <uie:IntegerField label="Index" value="1" name="LayerIndex" style="margin-top: 5px;" />
+                                <uie:IntegerField label="Index" value="1" name="LayerIndex" style="margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
+                                <ui:Slider picking-mode="Ignore" label="Weight" value="1" high-value="1" name="LayerWeight" show-input-field="true" style="margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
