@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime
@@ -34,6 +35,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime
 
         private void OnSceneChanged(Scene scene, Scene mode)
         {
+                Debug.Log($"From {scene.buildIndex} to {mode.name}");
             Data.Clear();
         }
     }

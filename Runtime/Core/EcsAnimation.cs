@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
 {
@@ -11,17 +10,19 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
         [SerializeField] private int _priority;
         [SerializeField] private float _transitionDuration;
         [SerializeField] private AnimationClip _animationClip;
+        [SerializeField] private LayerSettings _layerSettings;
 
         public EcsAnimation()
         {
         }
 
-        public EcsAnimation(string name, int priority, float transitionDuration, AnimationClip animationClip)
+        public EcsAnimation(string name, int priority, float transitionDuration, AnimationClip animationClip, LayerSettings layerSettings)
         {
             _name = name;
             _priority = priority;
             _transitionDuration = transitionDuration;
             _animationClip = animationClip;
+            _layerSettings = layerSettings;
         }
 
         public string Name => _name;
@@ -31,5 +32,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
         public float TransitionDuration => _transitionDuration;
 
         public AnimationClip AnimationClip => _animationClip;
+
+        public ref LayerSettings LayerSettings => ref _layerSettings;
     }
 }

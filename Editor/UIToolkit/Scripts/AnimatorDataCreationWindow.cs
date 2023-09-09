@@ -27,7 +27,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
         public static void Open()
         {
             var window = GetWindow<AnimatorDataCreationWindow>();
-            
+
             window.minSize = new Vector2(100f, 100f);
             window.titleContent = new GUIContent("Create Animator Data");
             window._tree = Resources.Load<VisualTreeAsset>(TreeLoadKey);
@@ -38,8 +38,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
         {
             _tree = Resources.Load<VisualTreeAsset>(TreeLoadKey);
             _animationPreview = Resources.Load<VisualTreeAsset>(AnimationPreviewKey);
-            Debug.Log(_tree);
-            
+
             _tree.CloneTree(rootVisualElement);
             _elements = new Elements(rootVisualElement);
             _createElements = new CreateAnimationElements(rootVisualElement);
@@ -48,7 +47,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             _elements.CreateAnimationParent.SetEnabled(false);
 
             _elements.SourceAnimator.RegisterValueChangedCallback(InitAnimator);
-            _createElements.ClipReferenceField.SetEnabled(false);
+            _createElements.ClipReference.SetEnabled(false);
             _createElements.ClipName.RegisterValueChangedCallback(callback =>
             {
                 var animatorController = (AnimatorController) _elements.SourceAnimator.value;
@@ -58,7 +57,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 if (animation is null)
                     return;
 
-                _createElements.ClipReferenceField.value = animation;
+                _createElements.ClipReference.value = animation;
             });
 
             _elements.SaveAssetButton.clicked += Create;
@@ -92,7 +91,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 
             _createElements.AnimationKey.value = "";
             _createElements.ClipName.index = 1;
-            _createElements.ClipReferenceField.value = null;
+            _createElements.ClipReference.value = null;
             _createElements.ClipName.choices.Remove(ecsAnimation.AnimationClip.name);
             _elements.InitialAnimationDropdown.choices.Add(ecsAnimation.Name);
 
@@ -102,26 +101,21 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 
         private EcsAnimation SetupAddedAnimation(VisualElement element)
         {
-            AnimationClip clip = (AnimationClip) _createElements.ClipReferenceField.value;
-            string animationKey = _createElements.AnimationKey.value;
-            float transitionDuration = _createElements.TransitionDuration.value;
-            string clipName = _createElements.ClipName.text;
-            int priority = _animations.Count + 1;
+            var clip = (AnimationClip) _createElements.ClipReference.value;
 
             var animationClipField = element.Q<ObjectField>("AnimationClip");
             animationClipField.value = clip;
             animationClipField.SetEnabled(false);
 
-            var ecsAnimation = new EcsAnimation(animationKey, priority, transitionDuration, clip);
-
+            var ecsAnimation = _createElements.BuildEcsAnimation(_animations.Count + 1);
             element.Q<Button>("SelectAnimationClipButton").clicked += () =>
             {
                 Selection.SetActiveObjectWithContext(animationClipField.value, null);
             };
 
-            element.Q<Label>("AnimationKey").text = animationKey;
-            element.Q<Label>("TransitionDuration").text = transitionDuration.ToString(CultureInfo.InvariantCulture);
-            element.Q<Label>("ClipName").text = clipName;
+            element.Q<Label>("AnimationKey").text = ecsAnimation.Name;
+            element.Q<Label>("TransitionDuration").text = ecsAnimation.TransitionDuration.ToString(CultureInfo.InvariantCulture);
+            element.Q<Label>("ClipName").text = ecsAnimation.AnimationClip.name;
             element.Q<Button>("DeleteAnimationButton").clicked += () =>
             {
                 _animations.Remove(ecsAnimation);
@@ -209,7 +203,9 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 AnimationKey = root.Q<TextField>("AnimationKey");
                 TransitionDuration = root.Q<FloatField>("TransitionDurationField");
                 ClipName = root.Q<DropdownField>("AnimationClipsDropdown");
-                ClipReferenceField = root.Q<ObjectField>("ReferenceClipField");
+                ClipReference = root.Q<ObjectField>("ReferenceClipField");
+                LayerIndex = root.Q<IntegerField>("LayerIndex");
+                LayerWeight = root.Q<FloatField>("LayerWeight");
                 AddAnimationButton = root.Q<Button>("AddAnimationButton");
             }
 
@@ -219,9 +215,31 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
 
             public DropdownField ClipName { get; }
 
-            public ObjectField ClipReferenceField { get; }
+            public ObjectField ClipReference { get; }
+
+            public IntegerField LayerIndex { get; }
+
+            public FloatField LayerWeight { get; }
 
             public Button AddAnimationButton { get; }
+
+            public EcsAnimation BuildEcsAnimation(int animationPriority)
+            {
+                var clip = (AnimationClip) ClipReference.value;
+
+                return new EcsAnimation(
+                    AnimationKey.value,
+                    animationPriority,
+                    TransitionDuration.value,
+                    clip,
+                    GenerateLayerSettings()
+                );
+            }
+
+            public LayerSettings GenerateLayerSettings()
+            {
+                return new LayerSettings(LayerIndex.value, LayerWeight.value);
+            }
         }
 
         private class Elements
