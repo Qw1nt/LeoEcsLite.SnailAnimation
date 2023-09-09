@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
     [Serializable]
     public struct LayerSettings

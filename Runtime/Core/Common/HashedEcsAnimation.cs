@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 
-namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
     public class HashedEcsAnimation
     {
@@ -35,7 +36,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
         public float ClipDuration { get; }
 
         public LayerSettings LayerSettings { get; }
-        
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))

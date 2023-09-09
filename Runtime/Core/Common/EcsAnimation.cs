@@ -1,26 +1,25 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
     [Serializable]
     public class EcsAnimation
     {
         [SerializeField] private string _name;
         [SerializeField] private int _priority;
-        
-        [Space]
-        [SerializeField] private float _transitionDuration;
+
+        [Space] [SerializeField] private float _transitionDuration;
         [SerializeField] private AnimationClip _animationClip;
-        
-        [Space]
-        [SerializeField] private LayerSettings _layerSettings;
+
+        [Space] [SerializeField] private LayerSettings _layerSettings;
 
         public EcsAnimation()
         {
         }
 
-        public EcsAnimation(string name, int priority, float transitionDuration, AnimationClip animationClip, LayerSettings layerSettings)
+        public EcsAnimation(string name, int priority, float transitionDuration, AnimationClip animationClip,
+            LayerSettings layerSettings)
         {
             _name = name;
             _priority = priority;

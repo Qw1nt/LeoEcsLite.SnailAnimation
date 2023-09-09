@@ -11,7 +11,6 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Extensions
             systems.Add(new DelInitRequestSystem());
             systems.Add(new SetInitialAnimationSystem());
             systems.Add(new EcsAnimationSystem());
-            systems.Add(new EcsAnimationTimerSystem());
 
             return systems;
         }

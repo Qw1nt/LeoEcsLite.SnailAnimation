@@ -1,5 +1,5 @@
 ﻿using Leopotam.EcsLite;
-using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common;
 using UnityEngine;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Components

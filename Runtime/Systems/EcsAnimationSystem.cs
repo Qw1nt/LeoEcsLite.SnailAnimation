@@ -14,22 +14,18 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Systems
             _filter = world.Filter<EcsAnimatorComponent>().End();
             _pool = world.GetPool<EcsAnimatorComponent>();
         }
-        
+
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in _filter)
             {
                 ref var component = ref _pool.Get(entity);
                 var ecsAnimator = component.Source;
-                
-                if (ecsAnimator.NeedPlayAnimation() == false)
-                {
-                    ecsAnimator.AnimationBuffer.Clear();
-                    continue;
-                }
 
-                ecsAnimator.Play();
-                ecsAnimator.AnimationBuffer.Clear();
+                if (ecsAnimator.IsRequiresPlayback() == true)
+                    ecsAnimator.Play();
+
+                ecsAnimator.ClearBuffer();
             }
         }
     }

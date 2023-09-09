@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,9 +24,9 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime
             Data.Add(entity, animator);
         }
 
-        public EcsAnimator SetAnimation(int entity, string animationName)
+        public EcsAnimator SetAnimation(int entity, string animationName, int layerIndex = 0)
         {
-            return Get(entity).SetAnimation(animationName);
+            return Get(entity).SetAnimation(animationName, layerIndex);
         }
         
         public EcsAnimator Get(int entity)

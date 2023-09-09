@@ -1,6 +1,7 @@
 using System;
+using Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Interfaces;
 
-namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core
+namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
     public class EcsAnimationBuffer : IEcsAnimationBuffer
     {
