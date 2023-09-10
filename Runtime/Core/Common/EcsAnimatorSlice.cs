@@ -7,11 +7,13 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
     {
         private readonly AnimationHashMap _animationHashMap;
         private readonly Animator _unityAnimator;
+        private readonly AnimatorSliceData _data;
         
-        internal EcsAnimatorSlice(Animator animator, EcsAnimatorData animatorData)
+        internal EcsAnimatorSlice(Animator animator, AnimatorSliceData data)
         {
             _unityAnimator = animator;
-            _animationHashMap = new AnimationHashMap(animatorData.Animations);
+            _data = data;
+            _animationHashMap = new AnimationHashMap(_data.Animations);
         }
         
         private HashedEcsAnimation PlayableAnimation { get; set; }
@@ -20,14 +22,17 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 
         private IEcsAnimationBuffer AnimationBuffer => EcsAnimationBuffer;
 
+        public string InitialAnimationName => _data.InitialAnimationName;
+
         public void Play()
         {
             var animation = EcsAnimationBuffer.PlayableAnimation;
-
+            _unityAnimator.SetLayerWeight(_data.LayerIndex, animation.LayerWeight);
+            
             if (PlayableAnimation == animation)
                 _unityAnimator.Play(animation.Hash, -1, 0f);
             else
-                _unityAnimator.CrossFade(animation.Hash, animation.TransitionDuration);
+                _unityAnimator.CrossFade(animation.Hash, animation.TransitionDuration, _data.LayerIndex);
 
             PlayableAnimation = animation;
         }

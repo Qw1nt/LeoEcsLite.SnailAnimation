@@ -11,9 +11,9 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
         [SerializeField] private RuntimeAnimatorController _animatorController;
 
         [Space] [SerializeField] private string _initialAnimationName;
-        [SerializeField] private List<EcsAnimation> _animations;
+        [SerializeField] private List<AnimatorSliceData> _layerSlices;
 
-        private void OnValidate()
+        /*private void OnValidate()
         {
             var serializedObject = new SerializedObject(this);
             var animations = serializedObject.FindProperty("_animations");
@@ -30,12 +30,10 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
             }
 
             serializedObject.ApplyModifiedProperties();
-        }
+        }*/
 
         public RuntimeAnimatorController AnimatorController => _animatorController;
-
-        public string InitialAnimationName => _initialAnimationName;
-
-        public IReadOnlyList<EcsAnimation> Animations => _animations;
+        
+        public IReadOnlyList<AnimatorSliceData> AnimationsSlice => _layerSlices;
     }
 }

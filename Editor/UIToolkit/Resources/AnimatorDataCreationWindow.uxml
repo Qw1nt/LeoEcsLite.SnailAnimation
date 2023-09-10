@@ -30,8 +30,7 @@
                         <ui:VisualElement name="LayerSettingsContainer" class="items-container">
                             <ui:Label text="Layer&#10;" display-tooltip-when-elided="true" style="height: 18px; font-size: 13px;" />
                             <ui:VisualElement style="border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color: rgb(70, 70, 70); padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
-                                <uie:IntegerField label="Index" value="1" name="LayerIndex" style="margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0;" />
-                                <ui:Slider picking-mode="Ignore" label="Weight" value="1" high-value="1" name="LayerWeight" show-input-field="true" style="margin-left: 0; margin-right: 0; margin-top: 5px; margin-bottom: 0;" />
+                                <ui:Slider picking-mode="Ignore" label="Weight" value="1" high-value="1" name="LayerWeight" show-input-field="true" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>

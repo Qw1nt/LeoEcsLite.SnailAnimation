@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
@@ -12,17 +11,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
             Priority = animation.Priority;
             TransitionDuration = animation.TransitionDuration;
             ClipDuration = animation.AnimationClip.length;
-            LayerSettings = animation.LayerSettings;
-        }
-
-        public HashedEcsAnimation(string name, int hash, int priority, float transitionDuration, float clipDuration, LayerSettings layerSettings)
-        {
-            Name = name;
-            Hash = hash;
-            Priority = priority;
-            TransitionDuration = transitionDuration;
-            ClipDuration = clipDuration;
-            LayerSettings = layerSettings;
+            LayerWeight = animation.LayerWeight;
         }
 
         public string Name { get; }
@@ -35,7 +24,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 
         public float ClipDuration { get; }
 
-        public LayerSettings LayerSettings { get; }
+        public float LayerWeight { get; }
 
         public override bool Equals(object obj)
         {
@@ -65,10 +54,10 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
         {
             if (left == null)
                 return false;
-            
+
             if (right == null)
                 return true;
-            
+
             return left.Priority > right.Priority;
         }
 
@@ -76,10 +65,10 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
         {
             if (left == null)
                 return true;
-            
+
             if (right == null)
                 return false;
-            
+
             return left.Priority < right.Priority;
         }
     }

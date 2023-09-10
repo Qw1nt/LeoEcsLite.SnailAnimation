@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 {
-    public class EcsAnimator : IAnimatorSlice
+    public class EcsAnimator
     {
         private readonly Animator _unityAnimator;
         private readonly EcsAnimatorData _animatorData;
@@ -21,9 +21,7 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
 
             Init();
         }
-
-        public EcsAnimatorData Data => _animatorData;
-
+        
         private void Init()
         {
             if (_unityAnimator is null)
@@ -33,30 +31,26 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
                 throw new NullReferenceException("Ecs animator data not set");
             
             for (int i = 0; i < _slices.Length; i++)
-                _slices[i] = new EcsAnimatorSlice(_unityAnimator, _animatorData);
+                _slices[i] = new EcsAnimatorSlice(_unityAnimator, _animatorData.AnimationsSlice[i]);
             
             _unityAnimator.runtimeAnimatorController = _animatorData.AnimatorController;
         }
 
-        public HashedEcsAnimation GetAnimation(string animationName)
-        {
-            return GetAnimation(animationName, 0);
-        }
-        
-        public HashedEcsAnimation GetAnimation(string animationName, int layerIndex)
+        public HashedEcsAnimation GetAnimation(string animationName, int layerIndex = 0)
         {
             return _slices[layerIndex].GetAnimation(animationName);
         }
-
-        public void SetAnimation(string animationName)
-        {
-            SetAnimation(animationName, 0);
-        }
         
-        public EcsAnimator SetAnimation(string animationName, int layerIndex)
+        public EcsAnimator SetAnimation(string animationName, int layerIndex = 0)
         {
             _slices[layerIndex].SetAnimation(animationName);
             return this;
+        }
+
+        public void SetInitial()
+        {
+            foreach (var slice in _slices)
+                slice.SetAnimation(slice.InitialAnimationName);
         }
 
         public bool IsRequiresPlayback()

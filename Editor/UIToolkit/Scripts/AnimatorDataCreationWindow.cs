@@ -204,7 +204,6 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                 TransitionDuration = root.Q<FloatField>("TransitionDurationField");
                 ClipName = root.Q<DropdownField>("AnimationClipsDropdown");
                 ClipReference = root.Q<ObjectField>("ReferenceClipField");
-                LayerIndex = root.Q<IntegerField>("LayerIndex");
                 LayerWeight = root.Q<Slider>("LayerWeight");
                 AddAnimationButton = root.Q<Button>("AddAnimationButton");
             }
@@ -216,8 +215,6 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
             public DropdownField ClipName { get; }
 
             public ObjectField ClipReference { get; }
-
-            public IntegerField LayerIndex { get; }
 
             public Slider LayerWeight { get; }
 
@@ -232,13 +229,8 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Editor.UIToolkit.CreationWindow
                     animationPriority,
                     TransitionDuration.value,
                     clip,
-                    GenerateLayerSettings()
+                    LayerWeight.value
                 );
-            }
-
-            public LayerSettings GenerateLayerSettings()
-            {
-                return new LayerSettings(LayerIndex.value, LayerWeight.value);
             }
         }
 
