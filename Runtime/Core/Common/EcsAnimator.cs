@@ -17,7 +17,11 @@ namespace Qw1nt.LeoEcsLite.EaseAnimation.Runtime.Core.Common
         {
             _unityAnimator = unityAnimator;
             _animatorData = animatorData;
-            _slices = new EcsAnimatorSlice[unityAnimator.layerCount];
+
+            var slicesCount = animatorData.AnimationsSlice.Count < _unityAnimator.layerCount
+                ? animatorData.AnimationsSlice.Count
+                : _unityAnimator.layerCount;
+            _slices = new EcsAnimatorSlice[slicesCount];
 
             Init();
         }
